@@ -132,15 +132,15 @@ var stack = d3.layout.stack();
 					var date = this.getAttribute("value");
 					var str;
 					if(date == "2014-02-19"){
-						str = "/../data/19.json";
+						str = "{{site.baseurl}}/data/19.json";
 					}else if(date == "2014-02-20"){
-						str = "/../data/20.json";
+						str = "{{site.baseurl}}/data/20.json";
 					}else if(date == "2014-02-21"){
-						str = "/../data/21.json";
+						str = "{{site.baseurl}}/data/21.json";
 					}else if(date == "2014-02-22"){
-						str = "/../data/22.json";
+						str = "{{site.baseurl}}/data/22.json";
 					}else{
-						str = "/../data/23.json";
+						str = "{{site.baseurl}}/data/23.json";
 					}
 					d3.json(str,function(json){
 						dataset = json;
