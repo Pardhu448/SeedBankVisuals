@@ -4,7 +4,7 @@ var padding = {top: 40, right: 40, bottom: 40, left:40};
 var dataset;
 //Set up stack method
 var stack = d3.layout.stack();
- d3.json("{{'data/mperday.json' | relative.url}}",function(json){
+ d3.json("{{site.baseurl}}/data/mperday.json",function(json){
    dataset = json;
    //Data, stacked
    stack(dataset);
