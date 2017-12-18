@@ -1,0 +1,48 @@
+---
+layout: vizmodules
+title: Who
+---
+<!--  
+<p style = "text-align: center"> 
+This webpage helps us explore questions like who is actually using seed bank? Male or Female, which age group ? 
+We can see how answers to these questions change with time and for specific features of users. 
+</p>
+-->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+
+<div>
+     <div class="btn-group pull-right">
+  	  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+             User Segment <span class="caret"></span>
+ 	  </button>
+  	  <ul class="dropdown-menu" role="menu">
+   		<li><a class="m" value="2014-02-19" href="#">More than two types</a></li>
+    		<li><a class="m" value="2014-02-20" href="#">Experienced</a></li>
+    		<li><a class="m" value="2014-02-21" href="#">Beginners</a></li>
+    		<li><a class="m" value="2014-02-22" href="#">More than five types</a></li>
+    		<li><a class="m" value="2014-02-23" href="#">Unresponsive</a></li>
+  	  </ul>
+      </div>
+     <div class="btn-group pull-right"; style = "clear : left">
+  	  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+             Level of Analysis <span class="caret"></span>
+ 	  </button>
+  	  <ul class="dropdown-menu" role="menu">
+   		<li><a class="m" value="2014-02-19" href="#">Gender</a></li>
+    		<li><a class="m" value="2014-02-20" href="#">Age-Group</a></li>
+    		<li><a class="m" value="2014-02-21" href="#">Race</a></li>
+    	</ul>
+      </div>
+  <div id="mbars">
+  
+  </div>
+</div>
+
+<script type = "text/javascript">
+{% include who_d3.js %}
+</script>

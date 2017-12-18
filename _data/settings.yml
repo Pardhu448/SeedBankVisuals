@@ -1,0 +1,27 @@
+title:  "SeedBankViz"
+description:
+author:
+  name: "pardhu448"
+  twitter: 
+
+menu:
+- {name: 'About', file: 'about.html'}
+- {name: 'Who', file: 'whovis.html'}
+- {name: 'Which', file: 'whichseeds.html'}
+- {name: 'Where', file: 'wherevis.html'}
+- {name: 'Contact', file: 'about.html'}
+
+social:
+- {icon: 'facebook', link: 'https://www.facebook.com'}
+- {icon: 'instagram', link: 'https://instagram.com'}
+- {icon: 'linkedin', link: 'https://linkedin.com'}
+
+servicesslide:
+- {title: 'Who is Using Seed Bank', file: 'whovis.html', image: 'whoimage_1.png'}
+- {title: 'Which Seeds are Borrowed', file : 'whichseeds.html', image: 'which_image.png'}
+- {title: 'How are they spread across Ohio', file: 'wherevis.html', image: 'where_image.png'} 
+
+jsarr:
+- {name : 'slideshow_script', file: 'slide_java.js'}
+
+# Available social icons are powered by Font Awesome, so you can use any icon that they offer

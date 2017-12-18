@@ -1,0 +1,190 @@
+<head>
+
+  <title>
+    
+      Where
+    
+  </title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+</head>
+
+
+<div class="container">
+<header class="site-header">
+  <h3 class="site-title">
+    <a href="/"> SeedBankViz</a>
+  </h3>
+  <nav class="menu-list">
+    
+      <a href="/pages/about.html" class="menu-link">About</a>
+    
+      <a href="/pages/whovis.html" class="menu-link">Who</a>
+    
+      <a href="/pages/whichseeds.html" class="menu-link">Which</a>
+    
+      <a href="/pages/wherevis.html" class="menu-link">Where</a>
+    
+      <a href="/pages/about.html" class="menu-link">Contact</a>
+    
+
+ </nav>
+
+  <div class="dropdown">
+    <button class="dropbtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    <div class="dropdown-content">
+      
+        <a href="/pages/about.html" class="menu-link">About</a>
+      
+        <a href="/pages/whovis.html" class="menu-link">Who</a>
+      
+        <a href="/pages/whichseeds.html" class="menu-link">Which</a>
+      
+        <a href="/pages/wherevis.html" class="menu-link">Where</a>
+      
+        <a href="/pages/about.html" class="menu-link">Contact</a>
+      
+    </div>
+  </div>
+
+</header>
+  
+  
+<style>
+
+.counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+</style>
+
+<svg width="960" height="600"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+
+
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var unemployment = d3.map();
+
+var path = d3.geoPath();
+
+var x = d3.scaleLinear()
+    .domain([1, 10])
+    .rangeRound([600, 860]);
+
+var color = d3.scaleThreshold()
+    .domain(d3.range(2, 10))
+    .range(d3.schemeBlues[9]);
+
+var g = svg.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(0,40)");
+
+g.selectAll("rect")
+  .data(color.range().map(function(d) {
+      d = color.invertExtent(d);
+      if (d[0] == null) d[0] = x.domain()[0];
+      if (d[1] == null) d[1] = x.domain()[1];
+      return d;
+    }))
+  .enter().append("rect")
+    .attr("height", 8)
+    .attr("x", function(d) { return x(d[0]); })
+    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+    .attr("fill", function(d) { return color(d[0]); });
+
+g.append("text")
+    .attr("class", "caption")
+    .attr("x", x.range()[0])
+    .attr("y", -6)
+    .attr("fill", "#000")
+    .attr("text-anchor", "start")
+    .attr("font-weight", "bold")
+    .text("Percentage of Beans Borrowed");
+
+g.call(d3.axisBottom(x)
+    .tickSize(13)
+    .tickFormat(function(x, i) { return i ? x : x + "%"; })
+    .tickValues(color.domain()))
+  .select(".domain")
+    .remove();
+
+d3.queue()
+    .defer(d3.json, "https://d3js.org/us-10m.v1.json")
+    .defer(d3.tsv, "/data/unemployment.tsv", function(d) { unemployment.set(d.id, +d.rate); })
+    .await(ready);
+
+function ready(error, us) {
+  if (error) throw error;
+
+  svg.append("g")
+      .attr("class", "counties")
+    .selectAll("path")
+    .data(topojson.feature(us, us.objects.counties).features)
+    .enter().append("path")
+      .attr("fill", function(d) { return color(d.rate = unemployment.get(d.id)); })
+      .attr("d", path)
+    .append("title")
+      .text(function(d) { return d.rate + "%"; });
+
+  svg.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .attr("class", "states")
+      .attr("d", path);
+}
+
+</script>
+
+
+
+
+ 
+</div>
+
+<footer class="footer">
+
+<!--
+  
+    <a href="https://www.facebook.com" class="menu-link"><i class="fa fa-facebook" aria-hidden="true" target="_blank"></i></a>
+  
+    <a href="https://instagram.com" class="menu-link"><i class="fa fa-instagram" aria-hidden="true" target="_blank"></i></a>
+  
+    <a href="https://linkedin.com" class="menu-link"><i class="fa fa-linkedin" aria-hidden="true" target="_blank"></i></a>
+  
+
+
+<div class="post-date">
+	<a href="/">DataConscientious Consultancy LLP | 
+        <span class="copyright">
+    &copy; 2017
+       </span>
+	</a>
+
+</div>
+-->
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</footer>
+
+
+
