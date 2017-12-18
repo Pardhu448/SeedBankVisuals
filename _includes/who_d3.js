@@ -4,7 +4,7 @@ var padding = {top: 40, right: 40, bottom: 40, left:40};
 var dataset;
 //Set up stack method
 var stack = d3.layout.stack();
- d3.json("/data/mperday.json",function(json){
+ d3.json("/../data/mperday.json",function(json){
    dataset = json;
    //Data, stacked
    stack(dataset);
@@ -132,15 +132,15 @@ var stack = d3.layout.stack();
 					var date = this.getAttribute("value");
 					var str;
 					if(date == "2014-02-19"){
-						str = "/data/19.json";
+						str = "/../data/19.json";
 					}else if(date == "2014-02-20"){
-						str = "/data/20.json";
+						str = "/../data/20.json";
 					}else if(date == "2014-02-21"){
-						str = "/data/21.json";
+						str = "/../data/21.json";
 					}else if(date == "2014-02-22"){
-						str = "/data/22.json";
+						str = "/../data/22.json";
 					}else{
-						str = "/data/23.json";
+						str = "/../data/23.json";
 					}
 					d3.json(str,function(json){
 						dataset = json;
